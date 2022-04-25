@@ -5,8 +5,8 @@ class ViewModel {
   late WebViewController _controller;
   WebViewController get controller => _controller;
 
-  Future<void> onPressedBackButton() async{
-    if(await _controller.canGoBack()){
+  Future<void> onPressedBackButton() async {
+    if (await _controller.canGoBack()) {
       _controller.goBack();
     }
   }
@@ -16,16 +16,17 @@ class ViewModel {
   }
 
   Future<void> onPressedAddButton() async {
-    _controller.loadUrl(AppLinks.addCourse);
-    //final currentUrl = await controller.currentUrl();
-    //print(currentUrl);
+    final currentUrl = await controller.currentUrl();
+    currentUrl != AppLinks.addCourse
+        ? _controller.loadUrl(AppLinks.addCourse)
+        : _controller.loadUrl(AppLinks.youTube);
   }
 
   WebView webView() {
     return WebView(
       initialUrl: AppLinks.initial,
       javascriptMode: JavascriptMode.unrestricted,
-      onWebViewCreated: (controller){
+      onWebViewCreated: (controller) {
         _controller = controller;
       },
     );
