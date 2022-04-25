@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'ui/home_page.dart';
+import 'view_model/view_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +23,10 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      home: const HomePage(title: title),
+      home: Provider(
+        create: (_) => ViewModel(),
+        child: const HomePage(title: title),
+      ),
     );
   }
 }
