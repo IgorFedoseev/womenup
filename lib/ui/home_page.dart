@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: _HomeBodyWidget(viewModel: viewModel),
+      body: const _HomeBodyWidget(),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add, size: 30),
         onPressed: viewModel.onPressedAddButton,
@@ -34,14 +34,13 @@ class HomePage extends StatelessWidget {
 }
 
 class _HomeBodyWidget extends StatelessWidget {
-  const _HomeBodyWidget({Key? key, required this.viewModel}) : super(key: key);
-
-  final ViewModel viewModel;
+  const _HomeBodyWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final webView = context.select((ViewModel model) => model.webView());
     return SafeArea(
-      child: viewModel.webView(),
+      child: webView,
     );
   }
 }
