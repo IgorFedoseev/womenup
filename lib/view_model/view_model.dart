@@ -3,7 +3,7 @@ import '../app/app_links.dart';
 
 class ViewModel {
   late WebViewController _controller;
-  WebViewController get controller => _controller;
+  //WebViewController get controller => _controller;
 
   Future<void> onPressedBackButton() async {
     if (await _controller.canGoBack()) {
@@ -16,7 +16,7 @@ class ViewModel {
   }
 
   Future<void> onPressedAddButton() async {
-    final currentUrl = await controller.currentUrl();
+    final currentUrl = await _controller.currentUrl();
     currentUrl != AppLinks.addCourse
         ? _controller.loadUrl(AppLinks.addCourse)
         : _controller.loadUrl(AppLinks.youTube);
